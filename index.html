@@ -1,100 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adams Detailing | The Ultimate Mobile Showroom</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adams Detailing | Elite Mobile Detailing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
     :root {
-      --dark: #05080e;
-      --glass: rgba(255,255,255,0.06);
-      --accent: #00e1ff;
-      --gold: #f4c542;
-      --muted: #a8b2c1;
+      --primary: #05070d;
+      --secondary: rgba(20, 25, 34, 0.9);
+      --accent: #00d4ff;
+      --accent-gradient: linear-gradient(135deg, #00d4ff, #0077ff);
+      --gold: #f5c542;
+      --text-light: #ffffff;
+      --text-muted: #a8b2c1;
+      --glass: rgba(255, 255, 255, 0.08);
     }
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family:'Poppins', sans-serif; background:var(--dark); color:#fff; overflow-x:hidden; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--primary);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
     nav {
-      position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center;
-      padding:20px 50px; background:var(--glass); backdrop-filter:blur(14px); z-index:10;
+      position: fixed;
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      background: var(--glass);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      z-index: 1000;
     }
-    nav h1 { font-size:2rem; font-weight:800;
-      background:linear-gradient(135deg,var(--accent),var(--gold));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+
+    nav h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    nav ul { list-style:none; display:flex; gap:30px; }
-    nav ul a { color:var(--muted); text-decoration:none; font-weight:500; transition:0.3s; }
-    nav ul a:hover { color:var(--gold); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--gold);
+    }
+
+    /* Hero Section */
     .hero {
-      position:relative; width:100%; height:100vh; overflow:hidden;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1606813908474-c975af2c1bb2?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    .hero .swiper-slide {
-      height:100%; background-size:cover; background-position:center; position:relative;
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
     }
-    .hero::after {
-      content:''; position:absolute; inset:0; background:rgba(0,0,0,0.5);
-    }
+
     .hero-content {
-      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; z-index:2;
-      mix-blend-mode:overlay; color:#fff;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1.2s ease;
     }
-    .hero-content h1 {
-      font-size:4rem; font-weight:800; margin-bottom:20px;
-      animation:glow1 4s ease-in-out infinite alternate;
-    }
-    .hero-content p { font-size:1.3rem; margin-bottom:30px; color:var(--muted); }
-    .btn-main {
-      padding:16px 36px; font-size:1.1rem; font-weight:600; border:none; border-radius:50px;
-      background:linear-gradient(135deg,var(--accent),var(--gold)); color:#000; cursor:pointer;
-      transition:transform 0.3s, box-shadow 0.3s;
-    }
-    .btn-main:hover { transform:scale(1.08); box-shadow:0 0 20px var(--accent); }
 
-    /* Floating Book Now */
-    .btn-fixed {
-      position:fixed; bottom:30px; right:30px; padding:14px 24px; font-size:1rem;
-      border:none; border-radius:50px; background:var(--accent); color:#000;
-      box-shadow:0 4px 20px rgba(0,0,0,0.6); z-index:10; cursor:pointer;
-      transition:transform 0.3s, background 0.3s;
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      animation: glowPulse 3s infinite;
     }
-    .btn-fixed:hover { transform:scale(1.1); background:#00b8e0; }
 
-    .section { padding:100px 20px; max-width:1100px; margin:0 auto; }
+    .hero p {
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      background: var(--accent-gradient);
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* Sections */
+    .section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
     .section h2 {
-      font-size:2.8rem; margin-bottom:40px; text-align:center;
-      background:linear-gradient(135deg,var(--accent),var(--gold));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      font-size: 2.8rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 20px;
     }
 
-    /* Services Animation */
+    /* Services */
     .cards {
-      display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
     }
-    .card {
-      background:var(--glass); padding:30px; border-radius:16px;
-      overflow:hidden; position:relative; transform:translateY(50px); opacity:0;
-      transition:transform 0.6s ease, opacity 0.6s ease;
-    }
-    .card.visible { transform:translateY(0); opacity:1; }
-    .card h3 { margin-bottom:10px; font-weight:600; }
-    .card p { color:var(--muted); }
 
-    /* Gallery Carousel */
-    .gallery { position:relative; width:100%; padding:40px 0; }
-    .gallery .swiper-slide {
-      height:500px; background-size:cover; background-position:center; border-radius:16px;
+    .card {
+      background: var(--secondary);
+      padding: 30px;
+      border-radius: 16px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      transition: opacity 0.5s;
+      opacity: 0;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .gallery-grid img {
+      border-radius: 12px;
+      width: 100%;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
     }
 
     /* Testimonials */
-    .testimonial { padding:80px 0; background:var(--glass); border-radius:16px; text-align:center; margin:40px auto; max-width:800px; }
-    .testimonial h3 { margin-bottom:16px; }
-    .testimonial p { font-style:italic; color:var(--muted); }
+    .swiper-slide {
+      background: var(--secondary);
+      padding: 40px;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
 
-    @keyframes glow1 {
-      from { text-shadow:0 0 10px var(--accent), 0 0 20px var(--accent); }
-      to { text-shadow:0 0 30px var(--gold), 0 0 60px var(--gold); }
+    /* Footer */
+    .footer {
+      background: var(--secondary);
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 60px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.6); }
+      50% { text-shadow: 0 0 20px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.9); }
     }
   </style>
 </head>
@@ -111,67 +248,75 @@
 </nav>
 
 <section class="hero">
-  <div class="swiper hero-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('https://source.unsplash.com/1600x900/?luxury-car-detailing')"></div>
-      <div class="swiper-slide" style="background-image:url('https://source.unsplash.com/1600x900/?car-wash-detailing')"></div>
-      <div class="swiper-slide" style="background-image:url('https://source.unsplash.com/1600x900/?car-interior-detailing')"></div>
-    </div>
-  </div>
   <div class="hero-content">
-    <h1>Luxury. Precision. Delivered.</h1>
-    <p>Elite mobile detailing to your driveway in Rockcastle, KY.</p>
-    <button class="btn-main" onclick="window.location='mailto:Aadams0146@gmail.com'">Book Now</button>
+    <h1>Luxury Mobile Detailing</h1>
+    <p>Precision. Perfection. Delivered to your driveway in Rockcastle, KY.</p>
+    <a href="mailto:Aadams0146@gmail.com" class="btn">Book Now</a>
   </div>
 </section>
 
 <section class="section" id="services">
   <h2>Our Services</h2>
   <div class="cards">
-    <div class="card"><h3>Full Interior Detail</h3><p>Deep vacuuming, shampoo, steam clean, shine.</p></div>
-    <div class="card"><h3>Exterior Hand Wash</h3><p>Foam bath, clay-bar, hand wax, tire shine.</p></div>
-    <div class="card"><h3>Ceramic Coating</h3><p>Hydrophobic protection for months.</p></div>
-  </div>
-</section>
-
-<section class="section gallery" id="gallery">
-  <h2>Gallery</h2>
-  <div class="swiper gallery-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('https://source.unsplash.com/800x500/?detailed-car')"></div>
-      <div class="swiper-slide" style="background-image:url('https://source.unsplash.com/800x500/?car-detailing-interior')"></div>
-      <div class="swiper-slide" style="background-image:url('https://source.unsplash.com/800x500/?car-detailing-exterior')"></div>
+    <div class="card">
+      <h3>Full Interior Detail</h3>
+      <p>Deep vacuum, shampoo, steam clean, and interior shine.</p>
+    </div>
+    <div class="card">
+      <h3>Exterior Hand Wash</h3>
+      <p>Foam bath, clay bar, hand wax, tire shine — all by hand.</p>
+    </div>
+    <div class="card">
+      <h3>Ceramic Coating</h3>
+      <p>High-performance protection & hydrophobic finish for months.</p>
     </div>
   </div>
 </section>
 
+<section class="section" id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="Image (37).jpg" alt="Detail 1">
+    <img src="Image (40).jpg" alt="Detail 2">
+    <img src="Image (41).jpg" alt="Detail 3">
+    <img src="Image (43).jpg" alt="Detail 4">
+    <img src="Image (45).jpg" alt="Detail 5">
+  </div>
+</section>
+
 <section class="section" id="testimonials">
-  <h2>What Our Clients Say</h2>
-  <div class="testimonial">
-    <h3>“My truck looked brand new. 10/10 service.” – Mike R.</h3>
-    <p>★★★★★</p>
+  <h2>Client Testimonials</h2>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">⭐️⭐️⭐️⭐️⭐️ “My truck looked brand new. 10/10 service.” – Mike R.</div>
+      <div class="swiper-slide">⭐️⭐️⭐️⭐️⭐️ “Arrived on time and did an amazing job. Highly recommend!” – Sarah P.</div>
+      <div class="swiper-slide">⭐️⭐️⭐️⭐️⭐️ “Best detailer in Kentucky. Will use again.” – Chris D.</div>
+      <div class="swiper-slide">⭐️⭐️⭐️⭐️⭐️ “Affordable and professional. My car was spotless.” – Jamie S.</div>
+      <div class="swiper-slide">⭐️⭐️⭐️⭐️⭐️ “They cleaned places I didn’t even know existed!” – Barry W.</div>
+    </div>
   </div>
 </section>
 
 <section class="section" id="contact">
   <h2>Book a Detail</h2>
-  <p>Email: <a href="mailto:Aadams0146@gmail.com" style="color:var(--accent)">Aadams0146@gmail.com</a></p>
-  <p>Phone: <a href="tel:+16062712951" style="color:var(--accent)">(606) 271-2951</a></p>
+  <p>Email: <a href="mailto:Aadams0146@gmail.com">Aadams0146@gmail.com</a></p>
+  <p>Phone: <a href="tel:+16062712951">(606) 271-2951</a></p>
+  <br>
+  <a href="https://venmo.com/u/Adams1990" class="btn">Pay with Venmo</a>
 </section>
 
-<button class="btn-fixed" onclick="window.location='mailto:Aadams0146@gmail.com'">Book Now</button>
+<footer class="footer">
+  <p>&copy; 2025 Adams Detailing. Crafted with precision.</p>
+</footer>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-  const heroSwiper = new Swiper('.hero-swiper', { effect: 'fade', loop: true, autoplay: { delay:4000 }, speed: 1200 });
-  const gallerySwiper = new Swiper('.gallery-swiper', { slidesPerView:1, loop: true, autoplay: { delay:3500 }, speed:1000 });
-
-  // Reveal cards on scroll
-  const cards = document.querySelectorAll('.card');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
-  }, { threshold: 0.3 });
-  cards.forEach(c => observer.observe(c));
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: { delay: 3500 },
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+  });
 </script>
 
 </body>
