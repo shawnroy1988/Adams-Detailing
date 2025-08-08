@@ -1,239 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Adams Detailing | Elite Mobile Detailing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <style>
-    :root {
-      --primary: #05070d;
-      --secondary: rgba(20, 25, 34, 0.9);
-      --accent: #00d4ff;
-      --accent-gradient: linear-gradient(135deg, #00d4ff, #0077ff);
-      --gold: #f5c542;
-      --text-light: #ffffff;
-      --text-muted: #a8b2c1;
-      --glass: rgba(255, 255, 255, 0.08);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Adams Detailing | Elite Mobile Detailing</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<style>
+:root {
+  --primary: #05070d;
+  --secondary: rgba(20, 25, 34, 0.8);
+  --accent: #00d4ff;
+  --accent-gradient: linear-gradient(135deg, #00d4ff, #0077ff);
+  --gold: #f5c542;
+  --text-light: #ffffff;
+  --text-muted: #a8b2c1;
+  --glass: rgba(255, 255, 255, 0.08);
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--primary);
-      color: var(--text-light);
-      overflow-x: hidden;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--primary);
+  color: var(--text-light);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
-    /* Navbar */
-    nav {
-      position: fixed;
-      width: 100%;
-      padding: 20px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(12px);
-      background: var(--glass);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      z-index: 1000;
-    }
+/* Navbar */
+nav {
+  position: fixed;
+  width: 100%;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  background: var(--glass);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
 
-    nav h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+nav h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
 
-    nav ul li a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
+nav ul li a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s;
+}
 
-    nav ul li a:hover {
-      color: var(--gold);
-    }
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  left: 0;
+  bottom: -4px;
+  transition: 0.3s;
+}
 
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1606813908474-c975af2c1bb2?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+nav ul li a:hover {
+  color: var(--gold);
+}
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-    }
+nav ul li a:hover::after {
+  width: 100%;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 1.2s ease;
-    }
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: var(--primary);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
 
-    .hero h1 {
-      font-size: 4.5rem;
-      font-weight: 700;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-      animation: glowPulse 3s infinite;
-    }
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
 
-    .hero p {
-      font-size: 1.5rem;
-      color: var(--text-muted);
-      margin-bottom: 40px;
-    }
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1.2s ease;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 14px 34px;
-      background: var(--accent-gradient);
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      color: white;
-      transition: transform 0.3s ease;
-    }
+.hero h1 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  animation: glowPulse 3s infinite;
+}
 
-    .btn:hover {
-      transform: scale(1.08);
-    }
+.hero p {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
 
-    /* Sections */
-    .section {
-      padding: 100px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.btn {
+  display: inline-block;
+  padding: 14px 34px;
+  background: var(--accent-gradient);
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(0,212,255,0.5);
+}
 
-    .section h2 {
-      font-size: 2.8rem;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(0,212,255,0.8);
+}
 
-    /* Services */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
+/* Sections */
+.section {
+  padding: 100px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
 
-    .card {
-      background: var(--secondary);
-      padding: 30px;
-      border-radius: 16px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
+.section h2 {
+  font-size: 2.8rem;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
-      transform: rotate(45deg);
-      transition: opacity 0.5s;
-      opacity: 0;
-    }
+/* Services */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
 
-    .card:hover::before {
-      opacity: 1;
-    }
+.card {
+  background: var(--secondary);
+  padding: 30px;
+  border-radius: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
 
-    .card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    }
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
 
-    .card h3 {
-      margin-bottom: 10px;
-    }
+.card h3 {
+  margin-bottom: 10px;
+}
 
-    .card p {
-      color: var(--text-muted);
-    }
+.card p {
+  color: var(--text-muted);
+}
 
-    /* Gallery */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
 
-    .gallery-grid img {
-      border-radius: 12px;
-      width: 100%;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
+.gallery-grid img {
+  border-radius: 12px;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
 
-    .gallery-grid img:hover {
-      transform: scale(1.05) rotate(1deg);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-    }
+.gallery-grid img:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+}
 
-    /* Testimonials */
-    .swiper-slide {
-      background: var(--secondary);
-      padding: 40px;
-      border-radius: 16px;
-      text-align: center;
-      font-size: 1.1rem;
-    }
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+#lightbox img {
+  max-width:90%;
+  max-height:80%;
+  border-radius:10px;
+}
 
-    /* Footer */
-    .footer {
-      background: var(--secondary);
-      padding: 40px 20px;
-      text-align: center;
-      color: var(--text-muted);
-      margin-top: 60px;
-    }
+/* Testimonials */
+.swiper-slide {
+  background: var(--secondary);
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 1.1rem;
+}
 
-    /* Animations */
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+/* Footer */
+.footer {
+  background: var(--secondary);
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 60px;
+}
 
-    @keyframes glowPulse {
-      0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.6); }
-      50% { text-shadow: 0 0 20px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.9); }
-    }
-  </style>
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.6); }
+  50% { text-shadow: 0 0 20px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.9); }
+}
+</style>
 </head>
 <body>
 
@@ -248,6 +271,7 @@
 </nav>
 
 <section class="hero">
+  <div id="particles-js"></div>
   <div class="hero-content">
     <h1>Luxury Mobile Detailing</h1>
     <p>Precision. Perfection. Delivered to your driveway in Rockcastle, KY.</p>
@@ -267,8 +291,8 @@
       <p>Foam bath, clay bar, hand wax, tire shine — all by hand.</p>
     </div>
     <div class="card">
-      <h3>Ceramic Coating</h3>
-      <p>High-performance protection & hydrophobic finish for months.</p>
+      <h3>Headlight Restoration</h3>
+      <p>Clear, polished headlights that look brand new and improve night visibility.</p>
     </div>
   </div>
 </section>
@@ -283,6 +307,8 @@
     <img src="Image (45).jpg" alt="Detail 5">
   </div>
 </section>
+
+<div id="lightbox"><img src="" alt=""></div>
 
 <section class="section" id="testimonials">
   <h2>Client Testimonials</h2>
@@ -310,14 +336,31 @@
 </footer>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-  const swiper = new Swiper('.swiper', {
-    loop: true,
-    autoplay: { delay: 3500 },
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
-  });
-</script>
+const swiper = new Swiper('.swiper', {
+  loop: true,
+  autoplay: { delay: 3500 },
+  effect: 'fade',
+  fadeEffect: { crossFade: true },
+});
 
+particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+
+const galleryImages = document.querySelectorAll('.gallery-grid img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+
+galleryImages.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = img.src;
+  });
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+</script>
 </body>
 </html>
