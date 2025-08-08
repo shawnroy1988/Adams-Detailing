@@ -1,32 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Adams Detailing</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA-TRACKING-ID"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'GA-TRACKING-ID');
-</script>
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'FB-PIXEL-ID');
-    fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=FB-PIXEL-ID&ev=PageView&noscript=1"/></noscript>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adams Detailing | Mobile Luxury Detailing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
     :root {
       --primary: #0a0f1c;
       --secondary: #1e293b;
@@ -34,6 +14,7 @@
       --gold: #f4c542;
       --text-light: #f5f5f5;
       --text-muted: #ccc;
+      --transition: 0.3s ease;
     }
     * {
       box-sizing: border-box;
@@ -47,33 +28,92 @@
       line-height: 1.6;
       scroll-behavior: smooth;
     }
-    header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      text-align: center;
-      padding: 100px 20px;
-      animation: fadeIn 1s ease-in-out;
+
+    /* Navbar */
+    nav {
+      background: rgba(10,15,28, 0.9);
+      padding: 20px 40px;
+      position: fixed;
+      width: 100%;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
     }
-    header h1 {
-      font-size: 3.5rem;
+    nav h1 {
       color: var(--gold);
-      margin-bottom: 10px;
+      font-size: 1.6rem;
     }
-    header p {
-      font-size: 1.5rem;
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+    nav ul li a {
       color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
     }
+    nav ul li a:hover {
+      color: var(--gold);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1587574293340-eef0d15ae80b?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background-color: var(--accent);
+      color: white;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Sections */
     .section {
-      padding: 60px 20px;
+      padding: 80px 20px;
       max-width: 1100px;
       margin: auto;
       text-align: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease;
-    }
-    .section.active {
-      opacity: 1;
-      transform: translateY(0);
     }
     .section h2 {
       font-size: 2.5rem;
@@ -84,57 +124,43 @@
       font-size: 1.2rem;
       color: var(--text-muted);
     }
-    .btn, .venmo-btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 15px 35px;
-      font-size: 1.1em;
-      font-weight: 600;
-      border: none;
-      border-radius: 30px;
-      color: white;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-    .btn {
-      background-color: var(--accent);
-    }
-    .btn:hover {
-      background-color: #0056b3;
-    }
-    .venmo-btn {
-      background-color: #3D95CE;
-    }
-    .venmo-btn:hover {
-      background-color: #2A6F9E;
-    }
+
+    /* Gallery */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
+      gap: 20px;
+      margin-top: 40px;
     }
     .gallery img {
       width: 100%;
       border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
     .gallery img:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
-    .testimonials {
-      margin-top: 40px;
+
+    /* Testimonials Carousel */
+    .testimonial-slider {
+      position: relative;
+      overflow: hidden;
+      max-width: 700px;
+      margin: 40px auto 0;
     }
-    .testimonials .slide {
+    .testimonial {
       display: none;
       font-size: 1.1rem;
       color: var(--text-muted);
+      animation: fadeIn 0.6s ease-in-out;
     }
-    .testimonials .slide.active {
+    .testimonial.active {
       display: block;
     }
+
+    /* Footer */
     footer {
       background-color: var(--secondary);
       padding: 40px 20px;
@@ -148,68 +174,96 @@
     footer a:hover {
       color: var(--gold);
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-</style>
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-<header>
-<h1>Adams Detailing</h1>
-<p>Luxury Mobile Car Detailing in Rockcastle, KY</p>
-</header>
-<section class="section">
-<h2>Our Services</h2>
-<p>Interior & Exterior Detailing, Hand Wash, Wax, and more!</p>
-<a href="mailto:Aadams0146@gmail.com" class="btn">Book a Detail</a>
+
+<!-- Navbar -->
+<nav>
+  <h1>Adams Detailing</h1>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Luxury Mobile Car Detailing</h1>
+    <p>Serving Rockcastle, KY and beyond – perfection in every detail.</p>
+    <a href="mailto:Aadams0146@gmail.com" class="btn">Book Now</a>
+  </div>
 </section>
-<section class="section">
-<h2>Gallery</h2>
-<div class="gallery">
-<img src="Image (37).jpg" alt="Detail 1">
-<img src="Image (40).jpg" alt="Detail 2">
-<img src="Image (41).jpg" alt="Detail 3">
-<img src="Image (43).jpg" alt="Detail 4">
-<img src="Image (45).jpg" alt="Detail 5">
-</div>
+
+<!-- Services -->
+<section class="section" id="services">
+  <h2>Our Services</h2>
+  <p>Interior & Exterior Detailing, Hand Wash, Ceramic Coating, Engine Bay Cleaning, Wax & More.</p>
 </section>
-<section class="section testimonials">
-<h2>What Clients Say</h2>
-<div class="slide active">⭐️⭐️⭐️⭐️⭐️ “My truck looked brand new. 10/10 service.” – Mike R.</div>
-<div class="slide">⭐️⭐️⭐️⭐️⭐️ “Arrived on time and did an amazing job. Highly recommend!” – Sarah P.</div>
-<div class="slide">⭐️⭐️⭐️⭐️⭐️ “Best detailer in Kentucky. Will use again.” – Chris D.</div>
-<div class="slide">⭐️⭐️⭐️⭐️⭐️ “Affordable and professional. My car was spotless.” – Jamie S.</div>
-<div class="slide">⭐️⭐️⭐️⭐️⭐️ “They cleaned places I didn’t even know existed!” – Barry W.</div>
+
+<!-- Gallery -->
+<section class="section" id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="Image (37).jpg" alt="Detail 1">
+    <img src="Image (40).jpg" alt="Detail 2">
+    <img src="Image (41).jpg" alt="Detail 3">
+    <img src="Image (43).jpg" alt="Detail 4">
+    <img src="Image (45).jpg" alt="Detail 5">
+  </div>
 </section>
-<section class="section">
-<h2>Payments</h2>
-<a href="https://venmo.com/u/Adams1990" class="venmo-btn">Pay with Venmo</a>
+
+<!-- Testimonials -->
+<section class="section" id="testimonials">
+  <h2>What Clients Say</h2>
+  <div class="testimonial-slider">
+    <div class="testimonial active">⭐️⭐️⭐️⭐️⭐️ “My truck looked brand new. 10/10 service.” – Mike R.</div>
+    <div class="testimonial">⭐️⭐️⭐️⭐️⭐️ “Arrived on time and did an amazing job. Highly recommend!” – Sarah P.</div>
+    <div class="testimonial">⭐️⭐️⭐️⭐️⭐️ “Best detailer in Kentucky. Will use again.” – Chris D.</div>
+    <div class="testimonial">⭐️⭐️⭐️⭐️⭐️ “Affordable and professional. My car was spotless.” – Jamie S.</div>
+    <div class="testimonial">⭐️⭐️⭐️⭐️⭐️ “They cleaned places I didn’t even know existed!” – Barry W.</div>
+  </div>
 </section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <h2>Contact & Payment</h2>
+  <p>Email: <a href="mailto:Aadams0146@gmail.com">Aadams0146@gmail.com</a></p>
+  <p>Phone: <a href="tel:+16062712951">(606) 271-2951</a></p>
+  <a href="https://venmo.com/u/Adams1990" class="btn" style="background-color:#3D95CE;">Pay with Venmo</a>
+</section>
+
+<!-- Footer -->
 <footer>
-<p>Contact: <a href="mailto:Aadams0146@gmail.com">Aadams0146@gmail.com</a></p>
-<p>Phone: <a href="tel:+16062712951">(606) 271-2951</a></p>
-<p>&copy; 2025 Adams Detailing</p>
+  <p>&copy; 2025 Adams Detailing | Designed by ChatGPT</p>
 </footer>
+
+<!-- Scripts -->
 <script>
-    // Scroll Animation
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-    sections.forEach(section => observer.observe(section));
-    // Testimonial Slider
-    let slideIndex = 0;
-    setInterval(() => {
-      const slides = document.querySelectorAll('.testimonials .slide');
-      slides.forEach(s => s.classList.remove('active'));
-      slideIndex = (slideIndex + 1) % slides.length;
-      slides[slideIndex].classList.add('active');
-    }, 4000);
+  // Auto-switch testimonial
+  let index = 0;
+  const testimonials = document.querySelectorAll('.testimonial');
+  setInterval(() => {
+    testimonials.forEach(t => t.classList.remove('active'));
+    index = (index + 1) % testimonials.length;
+    testimonials[index].classList.add('active');
+  }, 4000);
 </script>
+
 </body>
 </html>
