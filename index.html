@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
 <style>
+/* ===== Variables ===== */
 :root {
   --primary: #05070d;
   --secondary: rgba(20, 25, 34, 0.85);
@@ -21,12 +22,14 @@
   --card-back-gradient: linear-gradient(135deg, #f5c542, #00d4ff);
 }
 
+/* ===== Reset ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ===== Base Styles ===== */
 body {
   font-family: 'Poppins', sans-serif;
   background: var(--primary);
@@ -34,10 +37,9 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Navbar */
+/* ===== Navbar ===== */
 nav {
   position: fixed;
   width: 100%;
@@ -50,22 +52,18 @@ nav {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1100;
 }
-
 nav h1 {
   font-size: 1.4rem;
   font-weight: 700;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  user-select: none;
 }
-
 nav ul {
   list-style: none;
   display: flex;
   gap: 16px;
 }
-
 nav ul li a {
   color: var(--text-muted);
   text-decoration: none;
@@ -74,7 +72,6 @@ nav ul li a {
   position: relative;
   transition: 0.3s;
 }
-
 nav ul li a::after {
   content: '';
   position: absolute;
@@ -85,46 +82,40 @@ nav ul li a::after {
   bottom: -4px;
   transition: 0.3s;
 }
-
 nav ul li a:hover,
 nav ul li a.active {
   color: var(--gold);
 }
-
 nav ul li a:hover::after,
 nav ul li a.active::after {
   width: 100%;
 }
 
-/* Hero Section */
+/* ===== Hero ===== */
 .hero {
   height: 70vh;
   min-height: 400px;
   background: var(--primary);
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
   padding: 0 15px;
   margin-top: 56px; /* nav height */
+  position: relative;
+  overflow: hidden;
 }
-
 #particles-js {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 0;
 }
-
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 90vw;
   animation: fadeInUp 1.2s ease;
 }
-
 .hero h1 {
   font-size: clamp(2rem, 6vw, 3.2rem);
   font-weight: 700;
@@ -133,16 +124,14 @@ nav ul li a.active::after {
   -webkit-text-fill-color: transparent;
   margin-bottom: 12px;
   animation: glowPulse 3s infinite;
-  line-height: 1.1;
 }
-
 .hero p {
   font-size: clamp(0.9rem, 2.5vw, 1.3rem);
   color: var(--text-muted);
   margin-bottom: 30px;
 }
 
-/* Buttons */
+/* ===== Button ===== */
 .btn {
   display: inline-block;
   padding: 12px 30px;
@@ -153,94 +142,71 @@ nav ul li a.active::after {
   color: white;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 15px rgba(0,212,255,0.5);
-  user-select: none;
-  font-size: 1rem;
 }
-
 .btn:hover {
   transform: scale(1.07);
   box-shadow: 0 0 25px rgba(0,212,255,0.9);
 }
 
-/* Sections */
+/* ===== Section Base ===== */
 .section {
   padding: 60px 15px 80px;
   max-width: 1000px;
   margin: auto;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
 }
-
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .section h2 {
   font-size: clamp(1.8rem, 5vw, 2.5rem);
   color: var(--gold);
   text-align: center;
   margin-bottom: 24px;
-  user-select: none;
 }
 
-/* Services Cards */
+/* ===== Cards ===== */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
   margin-top: 40px;
 }
-
 .card {
   background: var(--secondary);
   padding: 25px 20px;
   border-radius: 14px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(8px);
-  cursor: default;
 }
-
 .card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
-
 .card h3 {
   margin-bottom: 10px;
   font-weight: 600;
   font-size: 1.25rem;
 }
-
 .card p {
   color: var(--text-muted);
   font-size: 0.95rem;
-  line-height: 1.4;
 }
 
-/* Gallery Grid */
+/* ===== Gallery ===== */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
   margin-top: 30px;
 }
-
 .gallery-grid img {
   border-radius: 10px;
   width: 100%;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  user-select: none;
 }
-
 .gallery-grid img:hover {
   transform: scale(1.06) rotate(1deg);
   box-shadow: 0 12px 25px rgba(0,0,0,0.5);
 }
 
-/* Lightbox */
+/* ===== Lightbox ===== */
 #lightbox {
   position: fixed;
   top:0; left:0;
@@ -256,293 +222,60 @@ nav ul li a.active::after {
   max-width:90%;
   max-height:80%;
   border-radius: 10px;
-  pointer-events:none;
 }
 
-/* Testimonials */
+/* ===== Testimonials ===== */
 .swiper-slide {
   background: var(--secondary);
   padding: 30px 20px;
   border-radius: 14px;
   text-align: center;
   font-size: 1.1rem;
-  user-select: none;
 }
 
-/* Footer */
+/* ===== Footer ===== */
 .footer {
   background: var(--secondary);
   padding: 30px 15px;
   text-align: center;
   color: var(--text-muted);
-  margin-top: 40px;
-  user-select: none;
   font-size: 0.9rem;
 }
 
-/* Animations */
+/* ===== Animations ===== */
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes glowPulse {
   0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.6); }
   50% { text-shadow: 0 0 20px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.9); }
 }
 
-/* Blackjack Section */
-#blackjack {
-  min-height: 100vh;
-  background: var(--primary);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 60px 15px 100px;
-  gap: 20px;
-  user-select: none;
-}
-
-#blackjack h2 {
-  color: var(--gold);
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  margin-bottom: 10px;
-}
-
-#game-container {
-  background: var(--secondary);
-  border-radius: 20px;
-  padding: 25px 20px;
-  max-width: 480px;
-  width: 100%;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--text-light);
-}
-
-#status {
-  font-size: 1.1rem;
-  min-height: 38px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: var(--gold);
-  font-weight: 600;
-  user-select: text;
-}
-
-.cards-row {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-}
-
-.card-js {
-  width: 56px;
-  height: 80px;
-  border-radius: 10px;
-  background: white;
-  position: relative;
-  box-shadow:
-    0 4px 10px rgba(0,0,0,0.5),
-    inset 0 0 8px rgba(0,0,0,0.15);
-  font-weight: 700;
-  font-size: 18px;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 8px 5px;
-  user-select: none;
-  cursor: default;
-  perspective: 600px;
-  transform-style: preserve-3d;
-  transition: transform 0.4s ease;
-}
-
-.card-js.red {
-  color: #d40000;
-}
-
-.card-js .top-left,
-.card-js .bottom-right {
-  font-size: 14px;
-}
-
-.card-js .bottom-right {
-  transform: rotate(180deg);
-  align-self: flex-end;
-}
-
-.card-js .center-suit {
-  font-size: 24px;
-  align-self: center;
-  line-height: 1;
-}
-
-/* Card back */
-.card-js.back {
-  background: var(--card-back-gradient);
-  background-size: 200% 200%;
-  background-position: 0% 50%;
-  animation: cardBackGlow 3s ease-in-out infinite alternate;
-  color: transparent !important;
-  box-shadow: 0 0 10px var(--gold);
-  cursor: default;
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-@keyframes cardBackGlow {
-  0% { background-position: 0% 50%; box-shadow: 0 0 10px var(--gold);}
-  100% { background-position: 100% 50%; box-shadow: 0 0 25px #00d4ff;}
-}
-
-/* Buttons container */
-#buttons {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 14px;
-}
-
-#buttons button {
-  background: var(--accent-gradient);
-  border: none;
-  border-radius: 50px;
-  padding: 10px 28px;
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,212,255,0.7);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  user-select: none;
-  font-size: 0.95rem;
-}
-
-#buttons button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-#buttons button:hover:not(:disabled) {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(0,212,255,1);
-}
-
-/* Scoreboard */
-#scoreboard {
-  margin-top: 12px;
-  width: 100%;
-  color: var(--gold);
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-align: center;
-  user-select: text;
-}
-
-/* Leaderboard */
-#leaderboard {
-  margin-top: 25px;
-  width: 100%;
-  background: rgba(255 255 255 / 0.12);
-  border-radius: 12px;
-  color: var(--text-light);
-  padding: 14px 12px;
-  max-height: 200px;
-  overflow-y: auto;
-  font-size: 0.85rem;
-  user-select: text;
-}
-
-#leaderboard h3 {
-  margin-bottom: 10px;
-  color: var(--gold);
-  font-weight: 700;
-  text-align: center;
-  font-size: 1.1rem;
-}
-
-#leaderboard table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#leaderboard th, #leaderboard td {
-  padding: 6px 4px;
-  border-bottom: 1px solid rgba(255 255 255 / 0.15);
-  text-align: left;
-}
-
-#leaderboard th {
-  background: rgba(255 255 255 / 0.15);
-}
-
-/* Responsive tweaks */
+/* ===== Responsive ===== */
 @media (max-width: 480px) {
-  nav ul {
-    gap: 10px;
-  }
-  nav ul li a {
-    font-size: 0.85rem;
-  }
   .hero {
     height: 60vh;
-  }
-  .hero h1 {
-    font-size: 2rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
-  .btn {
-    padding: 10px 24px;
-    font-size: 0.9rem;
-  }
-  .cards {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  #game-container {
-    padding: 20px 15px;
-    max-width: 100%;
-  }
-  .card-js {
-    width: 48px;
-    height: 68px;
-    font-size: 16px;
-    padding: 6px 4px;
-  }
-  .card-js .top-left,
-  .card-js .bottom-right {
-    font-size: 12px;
-  }
-  .card-js .center-suit {
-    font-size: 20px;
   }
 }
 </style>
 </head>
 <body>
 
+<!-- ===== Navbar ===== -->
 <nav>
   <h1>Adams Detailing</h1>
   <ul>
-    <li><a href="#services" class="nav-link">Services</a></li>
-    <li><a href="#gallery" class="nav-link">Gallery</a></li>
-    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-    <li><a href="#blackjack" class="nav-link">Blackjack</a></li>
-    <li><a href="#contact" class="nav-link">Contact</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#blackjack">Blackjack</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<section class="hero" id="hero">
+<!-- ===== Hero ===== -->
+<section class="hero">
   <div id="particles-js"></div>
   <div class="hero-content">
     <h1>Luxury Mobile Detailing</h1>
@@ -551,6 +284,7 @@ nav ul li a.active::after {
   </div>
 </section>
 
+<!-- ===== Services ===== -->
 <section class="section" id="services">
   <h2>Our Services</h2>
   <div class="cards">
@@ -569,6 +303,7 @@ nav ul li a.active::after {
   </div>
 </section>
 
+<!-- ===== Gallery ===== -->
 <section class="section" id="gallery">
   <h2>Gallery</h2>
   <div class="gallery-grid">
@@ -582,7 +317,63 @@ nav ul li a.active::after {
 
 <div id="lightbox"><img src="" alt=""/></div>
 
+<!-- ===== Testimonials ===== -->
 <section class="section" id="testimonials">
   <h2>Client Testimonials</h2>
   <div class="swiper mySwiper">
-    <div class="swiper-wrapper
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">"My car looks better than the day I bought it. Highly recommend!" — Sarah K.</div>
+      <div class="swiper-slide">"Amazing attention to detail. Will book again." — James R.</div>
+      <div class="swiper-slide">"Professional, punctual, and perfectionists!" — Laura M.</div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="section" id="contact">
+  <h2>Contact Us</h2>
+  <p style="text-align:center;color:var(--text-muted);">Email us at <a href="mailto:Aadams0146@gmail.com" style="color:var(--gold);">Aadams0146@gmail.com</a></p>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  &copy; 2025 Adams Detailing. All rights reserved.
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const images = document.querySelectorAll('.gallery-grid img');
+  const lightboxImg = lightbox.querySelector('img');
+  images.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+    });
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  particlesJS.load('particles-js', 'particles.json', function() {
+    console.log('particles.js loaded');
+  });
+</script>
+
+</body>
+</html>
