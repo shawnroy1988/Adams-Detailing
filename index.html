@@ -233,6 +233,32 @@ nav ul li a.active::after {
   font-size: 1.1rem;
 }
 
+/* ===== Blackjack ===== */
+#blackjack {
+  min-height: 100vh;
+  background: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 15px 100px;
+  gap: 20px;
+}
+#blackjack h2 {
+  color: var(--gold);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+}
+#game-container {
+  background: var(--secondary);
+  border-radius: 20px;
+  padding: 25px 20px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* ===== Footer ===== */
 .footer {
   background: var(--secondary);
@@ -251,18 +277,11 @@ nav ul li a.active::after {
   0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.6); }
   50% { text-shadow: 0 0 20px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.9); }
 }
-
-/* ===== Responsive ===== */
-@media (max-width: 480px) {
-  .hero {
-    height: 60vh;
-  }
-}
 </style>
 </head>
 <body>
 
-<!-- ===== Navbar ===== -->
+<!-- NAVBAR -->
 <nav>
   <h1>Adams Detailing</h1>
   <ul>
@@ -274,7 +293,7 @@ nav ul li a.active::after {
   </ul>
 </nav>
 
-<!-- ===== Hero ===== -->
+<!-- HERO -->
 <section class="hero">
   <div id="particles-js"></div>
   <div class="hero-content">
@@ -284,7 +303,7 @@ nav ul li a.active::after {
   </div>
 </section>
 
-<!-- ===== Services ===== -->
+<!-- SERVICES -->
 <section class="section" id="services">
   <h2>Our Services</h2>
   <div class="cards">
@@ -303,21 +322,20 @@ nav ul li a.active::after {
   </div>
 </section>
 
-<!-- ===== Gallery ===== -->
+<!-- GALLERY -->
 <section class="section" id="gallery">
   <h2>Gallery</h2>
   <div class="gallery-grid">
-    <img src="Image (37).jpg" alt="Detail 1" loading="lazy" />
-    <img src="Image (40).jpg" alt="Detail 2" loading="lazy" />
-    <img src="Image (41).jpg" alt="Detail 3" loading="lazy" />
-    <img src="Image (43).jpg" alt="Detail 4" loading="lazy" />
-    <img src="Image (45).jpg" alt="Detail 5" loading="lazy" />
+    <img src="Image (37).jpg" alt="Detail 1" />
+    <img src="Image (40).jpg" alt="Detail 2" />
+    <img src="Image (41).jpg" alt="Detail 3" />
+    <img src="Image (43).jpg" alt="Detail 4" />
+    <img src="Image (45).jpg" alt="Detail 5" />
   </div>
 </section>
-
 <div id="lightbox"><img src="" alt=""/></div>
 
-<!-- ===== Testimonials ===== -->
+<!-- TESTIMONIALS -->
 <section class="section" id="testimonials">
   <h2>Client Testimonials</h2>
   <div class="swiper mySwiper">
@@ -330,18 +348,34 @@ nav ul li a.active::after {
   </div>
 </section>
 
-<!-- ===== Contact ===== -->
+<!-- BLACKJACK -->
+<section id="blackjack">
+  <h2>Blackjack Game</h2>
+  <div id="game-container">
+    <div id="status">Click "Deal" to start</div>
+    <div class="cards-row" id="dealer-cards"></div>
+    <div class="cards-row" id="player-cards"></div>
+    <div id="buttons">
+      <button id="deal">Deal</button>
+      <button id="hit">Hit</button>
+      <button id="stand">Stand</button>
+    </div>
+    <div id="scoreboard">Dealer: 0 | Player: 0</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section class="section" id="contact">
   <h2>Contact Us</h2>
   <p style="text-align:center;color:var(--text-muted);">Email us at <a href="mailto:Aadams0146@gmail.com" style="color:var(--gold);">Aadams0146@gmail.com</a></p>
 </section>
 
-<!-- ===== Footer ===== -->
+<!-- FOOTER -->
 <footer class="footer">
   &copy; 2025 Adams Detailing. All rights reserved.
 </footer>
 
-<!-- ===== Scripts ===== -->
+<!-- SCRIPTS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
   var swiper = new Swiper(".mySwiper", {
@@ -370,10 +404,14 @@ nav ul li a.active::after {
 </script>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-  particlesJS.load('particles-js', 'particles.json', function() {
-    console.log('particles.js loaded');
-  });
+  particlesJS.load('particles-js', 'particles.json');
 </script>
-
+<script>
+// Simple Blackjack game logic
+let dealerScore = 0, playerScore = 0;
+document.getElementById('deal').addEventListener('click', () => {
+  document.getElementById('status').textContent = "Game started!";
+});
+</script>
 </body>
 </html>
