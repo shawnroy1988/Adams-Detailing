@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>Adams Detailing | Elite Mobile Detailing</title>
 
@@ -9,297 +9,150 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
 <style>
-/* ===== Variables ===== */
-:root {
-  --primary: #05070d;
-  --secondary: rgba(20, 25, 34, 0.85);
-  --accent: #00d4ff;
-  --accent-gradient: linear-gradient(135deg, #00d4ff, #0077ff);
-  --gold: #f5c542;
-  --text-light: #fff;
-  --text-muted: #a8b2c1;
-  --glass: rgba(255, 255, 255, 0.1);
-  --card-back-gradient: linear-gradient(135deg, #f5c542, #00d4ff);
+:root{
+  --primary:#05070d;
+  --secondary:rgba(20,25,34,0.85);
+  --accent:#00d4ff;
+  --accent-gradient:linear-gradient(135deg,#00d4ff,#0077ff);
+  --gold:#f5c542;
+  --text-light:#fff;
+  --text-muted:#a8b2c1;
+  --glass:rgba(255,255,255,0.06);
+  --card-back-gradient:linear-gradient(135deg,#f5c542,#00d4ff);
 }
 
-/* ===== Reset ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* base */
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--primary);
+  color:var(--text-light);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
-/* ===== Base Styles ===== */
-body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--primary);
-  color: var(--text-light);
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ===== Navbar ===== */
-nav {
-  position: fixed;
-  width: 100%;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  backdrop-filter: blur(12px);
-  background: var(--glass);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1100;
-}
-nav h1 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 16px;
-}
-nav ul li a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-  position: relative;
-  transition: 0.3s;
-}
-nav ul li a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  left: 0;
-  bottom: -4px;
-  transition: 0.3s;
-}
-nav ul li a:hover,
-nav ul li a.active {
-  color: var(--gold);
-}
-nav ul li a:hover::after,
-nav ul li a.active::after {
-  width: 100%;
-}
-
-/* ===== Hero ===== */
-.hero {
-  height: 70vh;
-  min-height: 400px;
-  background: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 15px;
-  margin-top: 56px; /* nav height */
-  position: relative;
-  overflow: hidden;
-}
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-.hero-content {
-  position: relative;
-  z-index: 1;
-  animation: fadeInUp 1.2s ease;
-}
-.hero h1 {
-  font-size: clamp(2rem, 6vw, 3.2rem);
-  font-weight: 700;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 12px;
-  animation: glowPulse 3s infinite;
-}
-.hero p {
-  font-size: clamp(0.9rem, 2.5vw, 1.3rem);
-  color: var(--text-muted);
-  margin-bottom: 30px;
-}
-
-/* ===== Button ===== */
-.btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background: var(--accent-gradient);
-  border-radius: 50px;
-  font-weight: 600;
-  text-decoration: none;
-  color: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 15px rgba(0,212,255,0.5);
-}
-.btn:hover {
-  transform: scale(1.07);
-  box-shadow: 0 0 25px rgba(0,212,255,0.9);
-}
-
-/* ===== Section Base ===== */
-.section {
-  padding: 60px 15px 80px;
-  max-width: 1000px;
-  margin: auto;
-}
-.section h2 {
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  color: var(--gold);
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-/* ===== Cards ===== */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  margin-top: 40px;
-}
-.card {
-  background: var(--secondary);
-  padding: 25px 20px;
-  border-radius: 14px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-}
-.card h3 {
-  margin-bottom: 10px;
-  font-weight: 600;
-  font-size: 1.25rem;
-}
-.card p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-/* ===== Gallery ===== */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-top: 30px;
-}
-.gallery-grid img {
-  border-radius: 10px;
-  width: 100%;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.gallery-grid img:hover {
-  transform: scale(1.06) rotate(1deg);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.5);
-}
-
-/* ===== Lightbox ===== */
-#lightbox {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.9);
-  display:none;
+/* navbar */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-between;
   align-items:center;
-  justify-content:center;
-  z-index: 2000;
-  cursor: pointer;
+  padding:14px 18px;
+  background:var(--glass);
+  backdrop-filter:blur(8px);
+  z-index:1100;
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
-#lightbox img {
-  max-width:90%;
-  max-height:80%;
-  border-radius: 10px;
+nav h1{
+  font-size:1.4rem;
+  font-weight:700;
+  background:var(--accent-gradient);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-
-/* ===== Testimonials ===== */
-.swiper-slide {
-  background: var(--secondary);
-  padding: 30px 20px;
-  border-radius: 14px;
-  text-align: center;
-  font-size: 1.1rem;
-}
-
-/* ===== Blackjack ===== */
-#blackjack {
-  min-height: 100vh;
-  background: var(--primary);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 15px 100px;
-  gap: 20px;
-}
-#blackjack h2 {
-  color: var(--gold);
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-}
-#game-container {
-  background: var(--secondary);
-  border-radius: 20px;
-  padding: 25px 20px;
-  max-width: 480px;
-  width: 100%;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+nav .nav-right{display:flex;gap:14px;align-items:center}
+nav ul{display:flex;gap:14px;list-style:none}
+nav a.nav-link{color:var(--text-muted);text-decoration:none;font-weight:500}
+.venmo-btn{
+  background:var(--gold);
+  color:#111;
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:0 6px 20px rgba(245,197,66,0.12);
 }
 
-/* ===== Footer ===== */
-.footer {
-  background: var(--secondary);
-  padding: 30px 15px;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
+/* hero */
+.hero{height:70vh;min-height:400px;margin-top:64px;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 18px;position:relative;overflow:hidden}
+#particles-js{position:absolute;inset:0;z-index:0}
+.hero-content{position:relative;z-index:1}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:700;background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.hero p{color:var(--text-muted);margin-bottom:22px}
+.btn{background:var(--accent-gradient);padding:12px 28px;border-radius:999px;color:white;text-decoration:none;font-weight:700;box-shadow:0 0 15px rgba(0,212,255,0.25)}
 
-/* ===== Animations ===== */
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-@keyframes glowPulse {
-  0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.6); }
-  50% { text-shadow: 0 0 20px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.9); }
+/* sections */
+.section{padding:60px 18px 80px;max-width:1000px;margin:0 auto}
+.section h2{text-align:center;color:var(--gold);font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:18px}
+
+/* cards & gallery */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--secondary);padding:20px;border-radius:12px}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.gallery-grid img{width:100%;border-radius:10px;cursor:pointer}
+
+/* lightbox */
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;z-index:2000}
+#lightbox img{max-width:92%;max-height:86%;border-radius:10px}
+
+/* testimonials */
+.swiper-slide{background:var(--secondary);padding:22px;border-radius:12px;text-align:center}
+
+/* Blackjack styles (kept prominent) */
+#blackjack{min-height:70vh;background:var(--primary);display:flex;flex-direction:column;align-items:center;padding:48px 18px 100px}
+#blackjack h2{color:var(--gold);font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:18px}
+#game-container{width:100%;max-width:520px;background:var(--secondary);padding:22px;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,0.6);display:flex;flex-direction:column;align-items:center;gap:10px}
+#status{color:var(--text-light);font-weight:600;font-size:1.05rem;min-height:28px;text-align:center}
+.cards-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;min-height:90px}
+.card-js{width:56px;height:80px;border-radius:10px;background:#fff;color:#111;display:flex;flex-direction:column;justify-content:space-between;padding:6px 6px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,0.5);user-select:none}
+.card-js.red{color:#d40000}
+.card-js .top-left{font-size:13px}
+.card-js .center-suit{font-size:22px;align-self:center;line-height:1}
+.card-js .bottom-right{font-size:13px;transform:rotate(180deg);align-self:flex-end}
+.card-back{background:var(--card-back-gradient);background-size:200% 200%;animation:cardBackGlow 3s ease-in-out infinite alternate;color:transparent;box-shadow:0 6px 20px rgba(0,0,0,0.35)}
+@keyframes cardBackGlow{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+#buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+#buttons button{background:var(--accent-gradient);color:white;border:none;padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(0,212,255,0.08)}
+#buttons button:disabled{opacity:0.45;cursor:not-allowed;box-shadow:none}
+#scoreboard{color:var(--gold);font-weight:700;margin-top:6px}
+
+/* footer */
+.footer{background:var(--secondary);padding:24px;text-align:center;color:var(--text-muted);margin-top:40px;display:flex;flex-direction:column;gap:8px;align-items:center}
+.footer .venmo-inline{background:var(--gold);color:#111;padding:8px 12px;border-radius:999px;text-decoration:none;font-weight:700}
+
+/* responsive tweaks */
+@media (max-width:480px){
+  .card-js{width:46px;height:68px}
+  nav ul{display:none}
+  nav .nav-right{gap:8px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
-  <h1>Adams Detailing</h1>
-  <ul>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#blackjack">Blackjack</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div style="display:flex;align-items:center;gap:14px">
+    <h1>Adams Detailing</h1>
+  </div>
+
+  <div class="nav-right">
+    <ul>
+      <li><a class="nav-link" href="#services">Services</a></li>
+      <li><a class="nav-link" href="#gallery">Gallery</a></li>
+      <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
+      <li><a class="nav-link" href="#blackjack">Blackjack</a></li>
+      <li><a class="nav-link" href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- Venmo link (prominent) -->
+    <a class="venmo-btn" href="https://venmo.com/u/Adams1990" target="_blank" rel="noopener noreferrer">Pay on Venmo</a>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="hero">
   <div id="particles-js"></div>
   <div class="hero-content">
     <h1>Luxury Mobile Detailing</h1>
     <p>Precision. Perfection. Delivered to your driveway in Rockcastle, KY.</p>
-    <a href="mailto:Aadams0146@gmail.com" class="btn">Book Now</a>
+    <a class="btn" href="mailto:Aadams0146@gmail.com">Book Now</a>
   </div>
 </section>
 
@@ -307,18 +160,9 @@ nav ul li a.active::after {
 <section class="section" id="services">
   <h2>Our Services</h2>
   <div class="cards">
-    <div class="card">
-      <h3>Full Interior Detail</h3>
-      <p>Deep vacuum, shampoo, steam clean, and interior shine.</p>
-    </div>
-    <div class="card">
-      <h3>Exterior Hand Wash</h3>
-      <p>Foam bath, clay bar, hand wax, tire shine — all by hand.</p>
-    </div>
-    <div class="card">
-      <h3>Headlight Restoration</h3>
-      <p>Clear, polished headlights that look brand new and improve night visibility.</p>
-    </div>
+    <div class="card"><h3>Full Interior Detail</h3><p>Deep vacuum, shampoo, steam clean, and interior shine.</p></div>
+    <div class="card"><h3>Exterior Hand Wash</h3><p>Foam bath, clay bar, hand wax, tire shine — all by hand.</p></div>
+    <div class="card"><h3>Headlight Restoration</h3><p>Clear, polished headlights that look brand new and improve night visibility.</p></div>
   </div>
 </section>
 
@@ -326,14 +170,15 @@ nav ul li a.active::after {
 <section class="section" id="gallery">
   <h2>Gallery</h2>
   <div class="gallery-grid">
-    <img src="Image (37).jpg" alt="Detail 1" />
-    <img src="Image (40).jpg" alt="Detail 2" />
-    <img src="Image (41).jpg" alt="Detail 3" />
-    <img src="Image (43).jpg" alt="Detail 4" />
-    <img src="Image (45).jpg" alt="Detail 5" />
+    <img src="Image (37).jpg" alt="Detail 1" loading="lazy">
+    <img src="Image (40).jpg" alt="Detail 2" loading="lazy">
+    <img src="Image (41).jpg" alt="Detail 3" loading="lazy">
+    <img src="Image (43).jpg" alt="Detail 4" loading="lazy">
+    <img src="Image (45).jpg" alt="Detail 5" loading="lazy">
   </div>
 </section>
-<div id="lightbox"><img src="" alt=""/></div>
+
+<div id="lightbox"><img src="" alt=""></div>
 
 <!-- TESTIMONIALS -->
 <section class="section" id="testimonials">
@@ -349,69 +194,261 @@ nav ul li a.active::after {
 </section>
 
 <!-- BLACKJACK -->
-<section id="blackjack">
-  <h2>Blackjack Game</h2>
-  <div id="game-container">
+<section id="blackjack" aria-labelledby="blackjack-title">
+  <h2 id="blackjack-title">Blackjack Game</h2>
+  <div id="game-container" role="application" aria-label="Blackjack game">
     <div id="status">Click "Deal" to start</div>
-    <div class="cards-row" id="dealer-cards"></div>
-    <div class="cards-row" id="player-cards"></div>
+
+    <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
+      <div style="text-align:center;"><strong style="color:var(--text-muted);font-size:0.85rem">Dealer</strong>
+        <div class="cards-row" id="dealer-cards" aria-live="polite"></div>
+      </div>
+      <div style="text-align:center;"><strong style="color:var(--text-muted);font-size:0.85rem">Player</strong>
+        <div class="cards-row" id="player-cards" aria-live="polite"></div>
+      </div>
+    </div>
+
     <div id="buttons">
       <button id="deal">Deal</button>
-      <button id="hit">Hit</button>
-      <button id="stand">Stand</button>
+      <button id="hit" disabled>Hit</button>
+      <button id="stand" disabled>Stand</button>
     </div>
-    <div id="scoreboard">Dealer: 0 | Player: 0</div>
+
+    <div id="scoreboard">Wins: 0 | Losses: 0 | Draws: 0</div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="section" id="contact">
   <h2>Contact Us</h2>
-  <p style="text-align:center;color:var(--text-muted);">Email us at <a href="mailto:Aadams0146@gmail.com" style="color:var(--gold);">Aadams0146@gmail.com</a></p>
+  <p style="text-align:center;color:var(--text-muted);">Email: <a href="mailto:Aadams0146@gmail.com" style="color:var(--gold)">Aadams0146@gmail.com</a></p>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  &copy; 2025 Adams Detailing. All rights reserved.
+  <div>&copy; <span id="year"></span> Adams Detailing. All rights reserved.</div>
+  <a class="venmo-inline" href="https://venmo.com/u/Adams1990" target="_blank" rel="noopener noreferrer">Pay on Venmo</a>
 </footer>
 
 <!-- SCRIPTS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
+  // initialize swiper
+  new Swiper('.mySwiper', {
+    slidesPerView:1, spaceBetween:18, loop:true,
+    pagination:{ el:'.swiper-pagination', clickable:true }
   });
 
-  // Lightbox
-  const lightbox = document.getElementById('lightbox');
-  const images = document.querySelectorAll('.gallery-grid img');
-  const lightboxImg = lightbox.querySelector('img');
-  images.forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = img.src;
-    });
-  });
-  lightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
+  // lightbox
+  const lightbox=document.getElementById('lightbox');
+  const imgs=document.querySelectorAll('.gallery-grid img');
+  const lbImg=lightbox.querySelector('img');
+  imgs.forEach(img => img.addEventListener('click', ()=>{ lbImg.src=img.src; lightbox.style.display='flex'; }));
+  lightbox.addEventListener('click', ()=>{ lightbox.style.display='none'; lbImg.src=''; });
+
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
+<!-- particles (optional; requires particles.json file available or can be omitted) -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-  particlesJS.load('particles-js', 'particles.json');
+  if (window.particlesJS) {
+    // if you don't have particles.json on your host, this will fail silently
+    try { particlesJS.load('particles-js','particles.json'); } catch(e){ /* ignore */ }
+  }
 </script>
+
+<!-- Blackjack logic -->
 <script>
-// Simple Blackjack game logic
-let dealerScore = 0, playerScore = 0;
-document.getElementById('deal').addEventListener('click', () => {
-  document.getElementById('status').textContent = "Game started!";
-});
+(() => {
+  // Deck helpers
+  const suits = ['♠','♥','♦','♣'];
+  const ranks = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+
+  function createDeck(){
+    const d=[];
+    for(const s of suits) for(const r of ranks) d.push({suit:s,rank:r});
+    return d;
+  }
+  function shuffle(deck){
+    for(let i=deck.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [deck[i],deck[j]]=[deck[j],deck[i]];
+    }
+    return deck;
+  }
+  function cardValue(card){
+    const r=card.rank;
+    if(r==='A') return 11;
+    if(['J','Q','K'].includes(r)) return 10;
+    return parseInt(r,10);
+  }
+  function evaluateHand(hand){
+    // return best total (accounting for Aces)
+    let total=0, aces=0;
+    for(const c of hand){ total += cardValue(c); if(c.rank==='A') aces++; }
+    // Reduce ace(s) value from 11 to 1 as needed
+    while(total>21 && aces>0){
+      total -= 10; // convert an Ace from 11 to 1
+      aces--;
+    }
+    return total;
+  }
+
+  // DOM
+  const dealerRow = document.getElementById('dealer-cards');
+  const playerRow = document.getElementById('player-cards');
+  const statusEl = document.getElementById('status');
+  const dealBtn = document.getElementById('deal');
+  const hitBtn = document.getElementById('hit');
+  const standBtn = document.getElementById('stand');
+  const scoreboard = document.getElementById('scoreboard');
+
+  // Game state
+  let deck = shuffle(createDeck());
+  let dealerHand = [];
+  let playerHand = [];
+  let dealerHidden = null; // store the facedown card
+  let wins=0, losses=0, draws=0;
+
+  function resetHands(){
+    dealerHand = []; playerHand = []; dealerHidden = null;
+    dealerRow.innerHTML=''; playerRow.innerHTML='';
+  }
+
+  function createCardEl(card, faceDown=false){
+    const el = document.createElement('div');
+    el.className = 'card-js' + (faceDown ? ' card-back' : '');
+    if(faceDown){
+      el.innerHTML = `<div class="top-left">?</div><div class="center-suit">?</div><div class="bottom-right">?</div>`;
+      return el;
+    }
+    const isRed = (card.suit==='♥' || card.suit==='♦');
+    if(isRed) el.classList.add('red');
+    el.innerHTML = `<div class="top-left">${card.rank}${card.suit}</div><div class="center-suit">${card.suit}</div><div class="bottom-right">${card.rank}${card.suit}</div>`;
+    return el;
+  }
+
+  function drawCard(){
+    if(deck.length===0){ deck = shuffle(createDeck()); }
+    return deck.pop();
+  }
+
+  function updateScoreboard(){
+    scoreboard.textContent = `Wins: ${wins} | Losses: ${losses} | Draws: ${draws}`;
+  }
+
+  function endRound(result){
+    // result: 'player', 'dealer', 'draw'
+    if(result==='player') { statusEl.textContent = 'You win!'; wins++; }
+    else if(result==='dealer') { statusEl.textContent = 'Dealer wins'; losses++; }
+    else { statusEl.textContent = "Push (draw)"; draws++; }
+    dealBtn.disabled = false; hitBtn.disabled = true; standBtn.disabled = true;
+    // Reveal any hidden dealer card if present
+    revealDealerHidden();
+    updateScoreboard();
+  }
+
+  function revealDealerHidden(){
+    if(dealerHidden){
+      // remove back card element and replace with actual card
+      const backEl = dealerRow.querySelector('.card-back');
+      if(backEl){
+        const realEl = createCardEl(dealerHidden,false);
+        dealerRow.replaceChild(realEl, backEl);
+      } else {
+        dealerRow.appendChild(createCardEl(dealerHidden,false));
+      }
+      dealerHand.push(dealerHidden);
+      dealerHidden = null;
+    }
+  }
+
+  function dealerPlayThenResolve(){
+    revealDealerHidden();
+    // Dealer hits until 17 or more (standard; dealer stands on soft 17)
+    let val = evaluateHand(dealerHand);
+    while(val < 17){
+      const c = drawCard();
+      dealerHand.push(c);
+      dealerRow.appendChild(createCardEl(c,false));
+      val = evaluateHand(dealerHand);
+    }
+    const playerVal = evaluateHand(playerHand);
+    const dealerVal = evaluateHand(dealerHand);
+    if(dealerVal>21) endRound('player');
+    else if(dealerVal>playerVal) endRound('dealer');
+    else if(dealerVal<playerVal) endRound('player');
+    else endRound('draw');
+  }
+
+  // Button handlers
+  dealBtn.addEventListener('click', () => {
+    resetHands();
+    // fresh shuffle occasionally
+    if(deck.length < 15) deck = shuffle(createDeck());
+    // initial deal
+    playerHand.push(drawCard());
+    dealerHand.push(drawCard());
+    playerHand.push(drawCard());
+    dealerHidden = drawCard(); // face-down
+    // render
+    playerRow.appendChild(createCardEl(playerHand[0],false));
+    playerRow.appendChild(createCardEl(playerHand[1],false));
+    dealerRow.appendChild(createCardEl(dealerHand[0],false));
+    dealerRow.appendChild(createCardEl(null,true)); // placeholder back
+    // enable actions
+    statusEl.textContent = 'Game started! Choose Hit or Stand.';
+    dealBtn.disabled = true;
+    hitBtn.disabled = false;
+    standBtn.disabled = false;
+  });
+
+  hitBtn.addEventListener('click', () => {
+    const c = drawCard();
+    playerHand.push(c);
+    playerRow.appendChild(createCardEl(c,false));
+    const val = evaluateHand(playerHand);
+    if(val>21){
+      // player bust
+      statusEl.textContent = 'You busted!';
+      // reveal dealer and count as dealer win
+      revealDealerHidden();
+      losses++;
+      updateScoreboard();
+      dealBtn.disabled = false; hitBtn.disabled = true; standBtn.disabled = true;
+    } else {
+      statusEl.textContent = `Player: ${val}. Hit or Stand?`;
+    }
+  });
+
+  standBtn.addEventListener('click', () => {
+    hitBtn.disabled = true;
+    standBtn.disabled = true;
+    statusEl.textContent = 'Dealer\'s turn...';
+    // dealer plays after brief delay so user sees sequence
+    setTimeout(() => dealerPlayThenResolve(), 600);
+  });
+
+  // Keyboard accessibility: H = hit, S = stand, D = deal
+  window.addEventListener('keydown', (e) => {
+    if(e.key.toLowerCase()==='h' && !hitBtn.disabled) hitBtn.click();
+    if(e.key.toLowerCase()==='s' && !standBtn.disabled) standBtn.click();
+    if(e.key.toLowerCase()==='d' && !dealBtn.disabled) dealBtn.click();
+  });
+
+  // Expose some debugging to console (optional)
+  window._blackjack = {
+    eval: evaluateHand,
+    deckRef: () => deck.slice(),
+    reset: () => { deck = shuffle(createDeck()); resetHands(); updateScoreboard(); statusEl.textContent='Reset'; }
+  };
+
+  updateScoreboard();
+
+})();
 </script>
+
 </body>
 </html>
