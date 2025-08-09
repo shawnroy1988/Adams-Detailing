@@ -1,501 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-<title>Adams Detailing | Blackjack with Chips</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adams Detailing Blackjack</title>
 <style>
-:root{
-  --primary:#05070d;
-  --secondary:rgba(20,25,34,0.9);
-  --accent-gradient:linear-gradient(135deg,#00d4ff,#0077ff);
-  --gold:#f5c542;
-  --muted:#a8b2c1;
-  --glass:rgba(255,255,255,0.04);
-  --chip-shadow: 0 8px 24px rgba(0,0,0,0.45);
-}
-
 /* Reset */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-
-/* Base */
-body{
-  font-family:"Poppins",sans-serif;
-  background:var(--primary);
-  color:white;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0d0d0d;
+  color: white;
+  text-align: center;
 }
 
-/* NAV */
-nav{
-  position:fixed;left:0;right:0;top:0;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 16px;background:var(--glass);backdrop-filter:blur(8px);
-  z-index:1200;border-bottom:1px solid rgba(255,255,255,0.05)
+/* Header */
+header {
+  background-color: #111;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #00aaff;
 }
-nav h1{font-size:1.3rem;font-weight:700;background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-nav .nav-right{display:flex;gap:12px;align-items:center}
-nav ul{display:flex;gap:12px;list-style:none}
-nav a.nav-link{color:var(--muted);text-decoration:none;font-weight:500}
-.venmo-btn{background:var(--gold);color:#111;padding:8px 12px;border-radius:999px;font-weight:700;text-decoration:none;box-shadow:0 8px 25px rgba(245,197,66,0.12)}
 
-/* Hero */
-.hero{height:60vh;min-height:260px;margin-top:64px;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 18px;position:relative;overflow:hidden}
-.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:8px;background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);margin-bottom:18px}
-
-/* Section */
-.section{padding:56px 18px 80px;max-width:1000px;margin:0 auto}
-.section h2{text-align:center;color:var(--gold);font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:14px}
-
-/* Blackjack area */
-#blackjack{min-height:78vh;background:transparent;display:flex;flex-direction:column;align-items:center;padding:28px 18px 100px}
-#game-container{width:100%;max-width:780px;background:var(--secondary);padding:18px;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.6);display:flex;flex-direction:column;gap:14px;align-items:center}
-.bankroll-row{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.bankroll{font-weight:800;color:var(--gold);font-size:1.1rem}
-.small-muted{color:var(--muted);font-size:0.88rem}
-.buy-controls{display:flex;gap:10px;align-items:center}
-
-/* Chips area */
-.chips-panel{width:100%;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:6px 0}
-.chip{
-  width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:800;color:white;cursor:pointer;box-shadow:var(--chip-shadow);border:4px solid rgba(0,0,0,0.08);
-  user-select:none;transition:transform .12s ease;
+/* Game container */
+#blackjack {
+  margin-top: 20px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 20px;
+  min-width: 300px;
 }
-.chip:active{transform:translateY(2px) scale(.98)}
-.chip .val{font-size:0.95rem}
-.chip.small{width:56px;height:56px}
 
-/* chip colors */
-.chip.red{background:linear-gradient(180deg,#ff5a5a,#dd2d2d);border-color:#fff5}
-.chip.green{background:linear-gradient(180deg,#51d88a,#21a95f)}
-.chip.black{background:linear-gradient(180deg,#444,#1f1f1f)}
-.chip.purple{background:linear-gradient(180deg,#b36be8,#7c3adf)}
-
-/* bet / controls */
-.bet-row{width:100%;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;align-items:center}
-.bet-box{background:rgba(255,255,255,0.03);padding:10px 14px;border-radius:12px;font-weight:700;color:var(--muted)}
-.controls button{background:var(--accent-gradient);color:white;border:none;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer}
-.controls button:disabled{opacity:0.4;cursor:not-allowed}
-
-/* table rows */
-.hands{width:100%;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
-.hand{flex:1;min-width:220px;text-align:center}
-.hand .label{color:var(--muted);font-size:0.85rem;margin-bottom:8px}
-.cards-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;min-height:92px}
-
-/* card element */
-.card-js{
-  width:64px;height:88px;border-radius:10px;background:white;color:#111;display:flex;flex-direction:column;justify-content:space-between;padding:6px 6px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.5);
+/* Buttons */
+button {
+  background-color: #00aaff;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.card-js.red{color:#d40000}
-.card-js .top-left{font-size:13px}
-.card-js .center-suit{font-size:22px;align-self:center;line-height:1}
-.card-js .bottom-right{font-size:13px;transform:rotate(180deg);align-self:flex-end}
-.card-back{background:linear-gradient(135deg,#f5c542,#00d4ff);background-size:200% 200%;color:transparent;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,0.45)}
-@keyframes cardBackGlow{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+button:hover {
+  background-color: #0088cc;
+}
 
-/* footer / scoreboard */
-#scoreboard{color:var(--gold);font-weight:700}
-.footer{background:var(--secondary);padding:18px;text-align:center;color:var(--muted);margin-top:28px;border-radius:10px;max-width:1000px;margin-left:auto;margin-right:auto}
+/* Chips */
+#chips {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.chip {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
 
-/* small helper */
-.inline-link{color:var(--gold);text-decoration:none;font-weight:700}
+/* Bankroll */
+#bankroll {
+  font-size: 18px;
+  margin-top: 10px;
+}
 
-/* responsive */
-@media (max-width:640px){
-  .chip{width:56px;height:56px}.card-js{width:52px;height:72px}.chips-panel{gap:10px}
-  .bankroll-row{flex-direction:column;align-items:center;gap:8px}
-  .hands{flex-direction:column;align-items:center}
+/* Venmo floating button */
+#venmo-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #3d95ce;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+#venmo-btn:hover {
+  background-color: #1a73b8;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #blackjack {
+    width: 90%;
+  }
+  .chip {
+    width: 40px;
+    height: 40px;
+  }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <h1>Adams Detailing</h1>
-  <div class="nav-right">
-    <ul>
-      <li><a class="nav-link" href="#services">Services</a></li>
-      <li><a class="nav-link" href="#gallery">Gallery</a></li>
-      <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
-      <li><a class="nav-link" href="#blackjack">Blackjack</a></li>
-      <li><a class="nav-link" href="#contact">Contact</a></li>
-    </ul>
-    <a class="venmo-btn" href="https://venmo.com/u/Adams1990" target="_blank" rel="noopener noreferrer">Pay on Venmo</a>
+<header>Adams Detailing - Blackjack</header>
+
+<div id="blackjack">
+  <h2>Blackjack Game</h2>
+  <div id="status">Click Deal to Start!</div>
+  <button onclick="deal()">Deal</button>
+  <button onclick="hit()">Hit</button>
+  <button onclick="stand()">Stand</button>
+
+  <div id="scores">Dealer: 0 | Player: 0</div>
+
+  <div id="bankroll">Bankroll: $100</div>
+  
+  <div id="chips">
+    <div class="chip" style="background-image:url('Image%20(37).jpg')" onclick="bet(5)"></div>
+    <div class="chip" style="background-image:url('Image%20(38).jpg')" onclick="bet(25)"></div>
+    <div class="chip" style="background-image:url('Image%20(39).jpg')" onclick="bet(100)"></div>
   </div>
-</nav>
-
-<section class="hero" id="hero">
-  <div class="hero-content">
-    <h1>Luxury Mobile Detailing</h1>
-    <p>Precision. Perfection. Delivered to your driveway in Rockcastle, KY.</p>
-  </div>
-</section>
-
-<!-- Placeholder services/gallery/testimonials (shortened) -->
-<section class="section" id="services">
-  <h2>Our Services</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-    <div style="background:var(--secondary);padding:12px;border-radius:10px"><strong>Interior Detail</strong><div class="small-muted">Deep clean and steam</div></div>
-    <div style="background:var(--secondary);padding:12px;border-radius:10px"><strong>Exterior Hand Wash</strong><div class="small-muted">Foam, clay, wax</div></div>
-    <div style="background:var(--secondary);padding:12px;border-radius:10px"><strong>Headlight Restore</strong><div class="small-muted">Clear & polished</div></div>
-  </div>
-</section>
-
-<section class="section" id="gallery">
-  <h2>Gallery</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px">
-    <div style="background:rgba(255,255,255,0.03);height:110px;border-radius:10px"></div>
-    <div style="background:rgba(255,255,255,0.03);height:110px;border-radius:10px"></div>
-    <div style="background:rgba(255,255,255,0.03);height:110px;border-radius:10px"></div>
-  </div>
-</section>
-
-<section class="section" id="testimonials">
-  <h2>Client Testimonials</h2>
-  <div style="background:var(--secondary);padding:14px;border-radius:10px">"Best detail — ever." — Customer</div>
-</section>
-
-<!-- BLACKJACK SECTION -->
-<section class="section" id="blackjack">
-  <h2>Blackjack — Play with Chips</h2>
-
-  <div id="game-container" role="application" aria-label="Blackjack game">
-    <div class="bankroll-row">
-      <div>
-        <div class="small-muted">Bankroll</div>
-        <div class="bankroll" id="bankrollDisplay">$1,000</div>
-      </div>
-      <div class="buy-controls">
-        <a class="venmo-btn" href="https://venmo.com/u/Adams1990" target="_blank" rel="noopener noreferrer">Buy Chips (Venmo)</a>
-        <button id="confirmPaid" style="background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px">I've paid — credit chips</button>
-      </div>
-    </div>
-
-    <div style="width:100%;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap">
-      <div class="bet-box">Current Bet: <span id="betDisplay">$0</span></div>
-      <div class="small-muted">Tap chips to add. Min $5.</div>
-      <button id="clearBet" class="controls-btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:8px 10px;border-radius:8px">Clear Bet</button>
-    </div>
-
-    <div class="chips-panel" aria-hidden="false">
-      <div class="chip red" data-value="5"><div class="val">$5</div></div>
-      <div class="chip green" data-value="25"><div class="val">$25</div></div>
-      <div class="chip black" data-value="100"><div class="val">$100</div></div>
-      <div class="chip purple" data-value="500"><div class="val">$500</div></div>
-    </div>
-
-    <div class="hands" style="width:100%">
-      <div class="hand">
-        <div class="label">Dealer</div>
-        <div class="cards-row" id="dealer-cards" aria-live="polite"></div>
-      </div>
-      <div class="hand">
-        <div class="label">Player</div>
-        <div class="cards-row" id="player-cards" aria-live="polite"></div>
-      </div>
-    </div>
-
-    <div id="status" class="small-muted" style="text-align:center">Place your bet and press Deal</div>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-      <div class="controls">
-        <button id="dealBtn">Deal</button>
-        <button id="hitBtn" disabled>Hit</button>
-        <button id="standBtn" disabled>Stand</button>
-      </div>
-    </div>
-
-    <div id="scoreboard" style="margin-top:6px">Wins: 0 | Losses: 0 | Draws: 0</div>
-  </div>
-</section>
-
-<section class="section" id="contact">
-  <h2>Contact & Payments</h2>
-  <p style="text-align:center;color:var(--muted)">Pay via Venmo: <a class="inline-link" href="https://venmo.com/u/Adams1990" target="_blank" rel="noopener noreferrer">https://venmo.com/u/Adams1990</a></p>
-</section>
-
-<div class="footer">
-  <div>&copy; <span id="year"></span> Adams Detailing</div>
-  <a class="venmo-btn" href="https://venmo.com/u/Adams1990" target="_blank" rel="noopener noreferrer">Pay on Venmo</a>
 </div>
 
-<!-- Optional swiper/particles scripts left out for brevity; include if you use them -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<a id="venmo-btn" href="https://venmo.com/u/Adams1990" target="_blank">Buy Chips</a>
 
 <script>
-/* Blackjack + Chips script */
-(() => {
-  // Basic deck & utilities
-  const suits = ['♠','♥','♦','♣'];
-  const ranks = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+let dealerScore = 0;
+let playerScore = 0;
+let bankroll = 100;
+let currentBet = 0;
 
-  function createDeck(){
-    const d = [];
-    for (const s of suits) for (const r of ranks) d.push({suit:s, rank:r});
-    return d;
+function updateDisplay() {
+  document.getElementById('scores').innerText = `Dealer: ${dealerScore} | Player: ${playerScore}`;
+  document.getElementById('bankroll').innerText = `Bankroll: $${bankroll}`;
+}
+
+function bet(amount) {
+  if (bankroll >= amount) {
+    currentBet = amount;
+    bankroll -= amount;
+    document.getElementById('status').innerText = `You bet $${amount}. Click Deal to start.`;
+    updateDisplay();
+  } else {
+    alert('Not enough funds! Click Buy Chips.');
   }
-  function shuffle(deck){
-    for (let i = deck.length-1; i>0; i--){
-      const j = Math.floor(Math.random()*(i+1));
-      [deck[i], deck[j]] = [deck[j], deck[i]];
-    }
-    return deck;
+}
+
+function deal() {
+  if (currentBet === 0) {
+    alert('Please place a bet first.');
+    return;
   }
-  function cardValue(card){
-    if (!card) return 0;
-    if (card.rank === 'A') return 11;
-    if (['J','Q','K'].includes(card.rank)) return 10;
-    return parseInt(card.rank, 10);
+  dealerScore = Math.floor(Math.random() * 11) + 1;
+  playerScore = Math.floor(Math.random() * 11) + 1;
+  document.getElementById('status').innerText = "Game started!";
+  updateDisplay();
+}
+
+function hit() {
+  playerScore += Math.floor(Math.random() * 11) + 1;
+  if (playerScore > 21) {
+    document.getElementById('status').innerText = "Bust! Dealer wins.";
+    currentBet = 0;
   }
-  function evaluateHand(hand){
-    let total = 0, aces = 0;
-    for (const c of hand){ total += cardValue(c); if (c.rank === 'A') aces++; }
-    while (total > 21 && aces > 0){ total -= 10; aces--; }
-    return total;
+  updateDisplay();
+}
+
+function stand() {
+  dealerScore += Math.floor(Math.random() * 11) + 1;
+  if (dealerScore > 21 || playerScore > dealerScore) {
+    document.getElementById('status').innerText = "You win!";
+    bankroll += currentBet * 2;
+  } else {
+    document.getElementById('status').innerText = "Dealer wins.";
   }
-
-  // DOM
-  const bankrollDisplay = document.getElementById('bankrollDisplay');
-  const betDisplay = document.getElementById('betDisplay');
-  const chips = document.querySelectorAll('.chip');
-  const clearBetBtn = document.getElementById('clearBet');
-  const dealBtn = document.getElementById('dealBtn');
-  const hitBtn = document.getElementById('hitBtn');
-  const standBtn = document.getElementById('standBtn');
-  const statusEl = document.getElementById('status');
-  const dealerRow = document.getElementById('dealer-cards');
-  const playerRow = document.getElementById('player-cards');
-  const scoreboardEl = document.getElementById('scoreboard');
-  const confirmPaidBtn = document.getElementById('confirmPaid');
-
-  // State
-  let deck = shuffle(createDeck());
-  let playerHand = [], dealerHand = [], dealerHidden = null;
-  let bankroll = 1000;
-  let bet = 0;
-  let wins = 0, losses = 0, draws = 0;
-
-  // Helpers to render money nicely
-  function fmt(n){ return '$' + n.toLocaleString(); }
-  function updateDisplays(){
-    bankrollDisplay.textContent = fmt(bankroll);
-    betDisplay.textContent = fmt(bet);
-    scoreboardEl.textContent = `Wins: ${wins} | Losses: ${losses} | Draws: ${draws}`;
-  }
-
-  // Create card element
-  function createCardEl(card, faceDown=false){
-    const el = document.createElement('div');
-    if (faceDown){
-      el.className = 'card-js card-back';
-      // subtle animation
-      el.style.animation = 'cardBackGlow 2.8s ease-in-out infinite alternate';
-      el.textContent = '';
-      return el;
-    }
-    el.className = 'card-js' + ((card.suit === '♥' || card.suit === '♦') ? ' red' : '');
-    el.innerHTML = `<div class="top-left">${card.rank}${card.suit}</div><div class="center-suit">${card.suit}</div><div class="bottom-right">${card.rank}${card.suit}</div>`;
-    return el;
-  }
-
-  function drawCard(){
-    if (deck.length === 0) deck = shuffle(createDeck());
-    return deck.pop();
-  }
-
-  function resetTable(){
-    playerHand = []; dealerHand = []; dealerHidden = null;
-    dealerRow.innerHTML = ''; playerRow.innerHTML = '';
-  }
-
-  function revealHidden(){
-    if (!dealerHidden) return;
-    // replace back card with actual
-    const back = dealerRow.querySelector('.card-back');
-    const real = createCardEl(dealerHidden, false);
-    if (back) dealerRow.replaceChild(real, back);
-    else dealerRow.appendChild(real);
-    dealerHand.push(dealerHidden);
-    dealerHidden = null;
-  }
-
-  function settleRound(result){
-    // result: 'player','dealer','draw','player-blackjack'
-    if (result === 'player'){
-      bankroll += bet;
-      statusEl.textContent = `You win ${fmt(bet)}!`;
-      wins++;
-    } else if (result === 'dealer'){
-      bankroll -= bet;
-      statusEl.textContent = `You lose ${fmt(bet)}`;
-      losses++;
-    } else if (result === 'draw'){
-      statusEl.textContent = `Push — bet returned`;
-      draws++;
-    } else if (result === 'player-blackjack'){
-      // blackjack pays 3:2
-      const payout = Math.round(bet * 1.5);
-      bankroll += payout;
-      statusEl.textContent = `Blackjack! You win ${fmt(payout)}!`;
-      wins++;
-    }
-    // turn controls off
-    dealBtn.disabled = false;
-    hitBtn.disabled = true;
-    standBtn.disabled = true;
-    bet = 0;
-    updateDisplays();
-  }
-
-  // Dealer auto-play
-  function dealerPlay(){
-    revealHidden();
-    let val = evaluateHand(dealerHand);
-    // Dealer stands on soft 17 (common) - we'll implement stand on 17
-    while (val < 17){
-      const c = drawCard();
-      dealerHand.push(c);
-      dealerRow.appendChild(createCardEl(c,false));
-      val = evaluateHand(dealerHand);
-    }
-    const playerVal = evaluateHand(playerHand);
-    const dealerVal = evaluateHand(dealerHand);
-    if (dealerVal > 21) settleRound('player');
-    else if (dealerVal > playerVal) settleRound('dealer');
-    else if (dealerVal < playerVal) settleRound('player');
-    else settleRound('draw');
-  }
-
-  // Chips click handlers
-  chips.forEach(ch => {
-    ch.addEventListener('click', () => {
-      const v = Number(ch.dataset.value);
-      if (bet + v > bankroll) {
-        statusEl.textContent = 'Bet cannot exceed bankroll';
-        return;
-      }
-      bet += v;
-      updateDisplays();
-      statusEl.textContent = 'Bet updated — press Deal';
-    });
-  });
-
-  clearBetBtn.addEventListener('click', () => {
-    bet = 0;
-    updateDisplays();
-    statusEl.textContent = 'Bet cleared';
-  });
-
-  // Deal
-  dealBtn.addEventListener('click', () => {
-    // must have a bet
-    if (bet < 5) { statusEl.textContent = 'Minimum bet is $5'; return; }
-    if (bet > bankroll) { statusEl.textContent = 'Bet exceeds bankroll'; return; }
-
-    resetTable();
-    // shuffle occasionally
-    if (deck.length < 12) deck = shuffle(createDeck());
-
-    // Deal initial hands
-    playerHand.push(drawCard());
-    dealerHand.push(drawCard());
-    playerHand.push(drawCard());
-    dealerHidden = drawCard(); // face-down
-
-    // render
-    playerRow.appendChild(createCardEl(playerHand[0],false));
-    playerRow.appendChild(createCardEl(playerHand[1],false));
-    dealerRow.appendChild(createCardEl(dealerHand[0],false));
-    dealerRow.appendChild(createCardEl(null,true)); // back placeholder
-
-    // enable play buttons
-    dealBtn.disabled = true;
-    hitBtn.disabled = false;
-    standBtn.disabled = false;
-    statusEl.textContent = 'Hit or Stand?';
-
-    // Check immediate blackjack conditions
-    const pVal = evaluateHand(playerHand);
-    const dVal = evaluateHand([dealerHand[0], dealerHidden]); // hidden counted as 11 for check but will be adjusted
-
-    const playerHasBlackjack = (pVal === 21);
-    // If player has blackjack:
-    if (playerHasBlackjack){
-      // reveal dealerHidden to determine if push or blackjack win
-      revealHidden();
-      const dealerValNow = evaluateHand(dealerHand);
-      if (dealerValNow === 21){
-        settleRound('draw'); // both blackjack => push
-      } else {
-        // player blackjack pays 3:2 (handled in settleRound)
-        settleRound('player-blackjack');
-      }
-    }
-  });
-
-  hitBtn.addEventListener('click', () => {
-    const c = drawCard();
-    playerHand.push(c);
-    playerRow.appendChild(createCardEl(c,false));
-    const val = evaluateHand(playerHand);
-    if (val > 21){
-      // bust
-      revealHidden();
-      settleRound('dealer');
-    } else {
-      statusEl.textContent = `Player ${val}. Hit or Stand?`;
-    }
-  });
-
-  standBtn.addEventListener('click', () => {
-    hitBtn.disabled = true;
-    standBtn.disabled = true;
-    statusEl.textContent = 'Dealer\'s turn...';
-    setTimeout(dealerPlay, 600);
-  });
-
-  // "I've paid - credit chips" (manual crediting)
-  confirmPaidBtn.addEventListener('click', () => {
-    const amtStr = prompt('Enter amount of dollars you paid via Venmo (numbers only). Example: 20 to credit $20 in chips.');
-    if (!amtStr) return;
-    const amt = Math.max(0, Math.floor(Number(amtStr) || 0));
-    if (amt <= 0) { alert('Invalid amount'); return; }
-    bankroll += amt;
-    updateDisplays();
-    alert('Thanks — your bankroll has been credited locally. (This is a manual client-side credit.)');
-  });
-
-  // keyboard controls for desktop (optional)
-  window.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'h' && !hitBtn.disabled) hitBtn.click();
-    if (e.key.toLowerCase() === 's' && !standBtn.disabled) standBtn.click();
-    if (e.key.toLowerCase() === 'd' && !dealBtn.disabled) dealBtn.click();
-  });
-
-  // init
-  updateDisplays();
-
-  // expose for console debugging if needed
-  window._adamsBlackjack = {
-    getState: () => ({bankroll, bet, wins, losses, draws}),
-    credit: (n) => { bankroll += n; updateDisplays(); }
-  };
-})();
-</script>
-
-<script>
-  // small helpers (year)
-  document.getElementById('year').textContent = new Date().getFullYear();
+  currentBet = 0;
+  updateDisplay();
+}
 </script>
 
 </body>
